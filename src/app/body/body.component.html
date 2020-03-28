@@ -1,0 +1,31 @@
+<div class="row inputview mt-4">
+  <div class="col-12">
+    <div class="input-group md-3 sm-12">
+      <input type=" text" class="form-control" placeholder="Paste Your Long Url" #url />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="getUrl(url.value)">
+          Generate
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="padding: 25px;">
+  <div class="col-lg-4 col-sm-6 cards" style="justify-content: center;" *ngFor="let data of urldata">
+    <div class="card bg-light mb-3" style="max-width: 22rem;">
+      <div class="card-header">Click Count : {{ data.count }}</div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">
+          <a (click)="redirect(data.shortUrl)" href="#"
+            style="color: blue;">http://localhost:3000/{{ data.shortUrl }}</a>
+        </h5>
+        <p class="card-text">
+          {{ data.longUrl }}
+        </p>
+        <button class="btn btn-sm btn-danger" (click)="remove(data._id)">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
