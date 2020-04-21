@@ -11,6 +11,7 @@ const {
 mongoose.connect("mongodb+srv://aravind:9994320498@cluster0-3msaz.azure.mongodb.net/test?retryWrites=true&w=majority");
 
 const app = express();
+const baseurl = "www.arshort.com";
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../dist' , 'urlshortner')));
@@ -37,17 +38,17 @@ app.get('/display', (req, res) => {
 app.post('/create', (req, res) => {
   const urlShort = new urlModel({
     longUrl: req.body.userUrl,
-    shortUrl: generateUrl(),
+    shortUrl: baseurl+'/'+generateUrl(),
+    
   })
   urlShort.save((err, data) => {
     if (err) throw err;
-    console.log(data);
+    console.log(`${data}is there`);
     res.json({
       data
     })
   });
 });
-
 //redirect to longurl
 app.get('/redirect/:url', (req, res) => {
   urlModel.findOne({
@@ -65,7 +66,7 @@ app.get('/redirect/:url', (req, res) => {
     }, (err, updatedData) => {
       if (err) throw err;
       res.send({
-        data
+        updatedData
       });
     })
 
