@@ -11,6 +11,9 @@ const urlSchema = mongoose.Schema({
   count: {
     type: Number,
     default: 0
+  },
+  urlcode :{
+    type : String,
   }
 })
 
