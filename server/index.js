@@ -112,7 +112,7 @@ app.get('*', (req, res) => {
 });
 //server
 app.listen(process.env.PORT || 3000, () => {
-  console.log("node server is running")
+  console.log(`node server is running in port ${PORT}`)
 });
 
 //generate short url
