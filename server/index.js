@@ -38,7 +38,8 @@ app.get('/display', (req, res) => {
 app.post('/create', (req, res) => {
   const urlShort = new urlModel({
     longUrl: req.body.userUrl,
-    shortUrl: baseurl+'/'+generateUrl(),
+    shortUrl: generateUrl(),
+    Urlcode:baseurl+'/'+ shortUrl
     
   })
   urlShort.save((err, data) => {
