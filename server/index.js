@@ -49,6 +49,7 @@ app.post('/create', (req, res) => {
     })
   });
 });
+
 //redirect to longurl
 app.get('/redirect/:url', (req, res) => {
   urlModel.findOne({
@@ -66,7 +67,7 @@ app.get('/redirect/:url', (req, res) => {
     }, (err, updatedData) => {
       if (err) throw err;
       res.send({
-        updatedData
+        data
       });
     })
 
