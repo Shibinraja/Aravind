@@ -8,13 +8,13 @@ const urlSchema = mongoose.Schema({
   shortUrl: {
     type: String
   },
+  shortUrl2:{
+    type: String
+  },
   count: {
     type: Number,
     default: 0
   },
-  urlcode :{
-    type : String,
-  }
 })
 
 const urlModel = mongoose.model('urlShort', urlSchema);

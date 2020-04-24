@@ -11,7 +11,6 @@ const {
 mongoose.connect("mongodb+srv://aravind:9994320498@cluster0-3msaz.azure.mongodb.net/test?retryWrites=true&w=majority");
 
 const app = express();
-const baseurl = "www.arshort.com";
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../dist' , 'urlshortner')));
@@ -38,9 +37,8 @@ app.get('/display', (req, res) => {
 app.post('/create', (req, res) => {
   const urlShort = new urlModel({
     longUrl: req.body.userUrl,
-    shortUrl: generateUrl(),
-    Urlcode:baseurl+'/'+ shortUrl
-    
+    shortUrl:generateUrl(),
+
   })
   urlShort.save((err, data) => {
     if (err) throw err;
@@ -53,12 +51,11 @@ app.post('/create', (req, res) => {
 
 //redirect to longurl
 app.get('/redirect/:url', (req, res) => {
+  console.log(req)
   urlModel.findOne({
     shortUrl: req.params.url
   }, (err, data) => {
     if (err) throw err;
-    console.log("redirectdataaa",
-      data);
     urlModel.findByIdAndUpdate({
       _id: data.id
     }, {
@@ -80,6 +77,7 @@ app.get('/:url', function (req, res) {
   urlModel.findOne({
     shortUrl: req.params.url
   }, (err, data) => {
+    console.log(data)
     if (err) throw err;
     urlModel.findByIdAndUpdate({
       _id: data.id
@@ -112,7 +110,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist' , 'urlshortner', 'index.html'))
 });
 //server
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log(`node server is running in`)
 });
 

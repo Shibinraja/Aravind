@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node ./server/index.js",
+    "start": "ng serve",
     "build": "ng build ",
     "test": "ng test",
     "lint": "ng lint",
@@ -35,7 +35,7 @@
     "typescript": "~3.5.3",
     "zone.js": "~0.9.1"
   },
-  "proxy": "http://localhost:3000",
+  "proxy" : "http://localhost:8080",
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.25",
     "@angular/cli": "~8.3.19",
